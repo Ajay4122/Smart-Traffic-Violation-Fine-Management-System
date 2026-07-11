@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Dashboard - Smart Traffic System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-user-shield"></i> Traffic Police
+                </div>
+                <div>
+                    <span style="margin-right: 1rem; color: var(--text-muted);" id="officerName">Officer</span>
+                    <button onclick="logout()" class="btn btn-outline"
+                        style="border: none; color: var(--error-color);"><i class="fas fa-sign-out-alt"></i>
+                        Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container fade-in" style="margin-top: 2rem;">
+        <div class="grid grid-cols-2">
+            <div>
+                <h1 style="margin-bottom: 1.5rem;">Record Violation</h1>
+                <div class="card">
+                    <form id="violationForm">
+                        <div class="form-group">
+                            <label class="form-label">Vehicle Number</label>
+                            <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. KA01AB1234"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Traffic Rule Violated</label>
+                            <select id="ruleSelect" class="form-control" required>
+                                <option value="">Select a rule...</option>
+                                <!-- Rules populated via JS -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Evidence Image</label>
+                            <div
+                                style="border: 2px dashed var(--border-color); padding: 2rem; text-align: center; border-radius: var(--radius); position: relative;">
+                                <input type="file" id="evidenceImage" accept="image/*"
+                                    style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;"
+                                    required>
+                                <i class="fas fa-camera"
+                                    style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                                <p style="color: var(--text-muted);">Click or drag image here</p>
+                                <p id="fileName"
+                                    style="margin-top: 0.5rem; color: var(--primary-color); font-weight: 500;"></p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%;">Submit Violation</button>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">Recent Records</h2>
+                <div id="recentViolations" class="grid grid-cols-1" style="max-height: 600px; overflow-y: auto;">
+                    <!-- Recent cards -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/police.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+
+</html>

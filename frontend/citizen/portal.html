@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Portal - Smart Traffic System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-user-circle"></i> Citizen Portal
+                </div>
+                <div>
+                    <button onclick="logout()" class="btn btn-outline"
+                        style="border: none; color: var(--error-color);"><i class="fas fa-sign-out-alt"></i>
+                        Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container fade-in" style="margin-top: 2rem;">
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="grid grid-cols-2" style="align-items: end;">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Search Vehicle Number</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="vehicleSearch" class="form-control" placeholder="e.g. KA01AB1234">
+                        <button id="searchBtn" class="btn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: 1.5rem;">Your Violations</h2>
+
+        <div id="loading" style="display: none; text-align: center; color: var(--text-muted);">
+            <i class="fas fa-spinner fa-spin"></i> Loading...
+        </div>
+
+        <div id="violationsList" class="grid grid-cols-1">
+            <!-- Results -->
+            <p style="color: var(--text-muted);">Enter vehicle number to view records.</p>
+        </div>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card" style="width: 100%; max-width: 400px; text-align: center;">
+            <div style="margin-bottom: 1.5rem;">
+                <i class="fas fa-credit-card" style="font-size: 3rem; color: var(--primary-color);"></i>
+            </div>
+            <h2 style="margin-bottom: 0.5rem;">Confirm Payment</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You are paying <span id="paymentAmount"
+                    style="font-weight: bold; color: var(--text-color);"></span></p>
+
+            <button id="confirmPayBtn" class="btn" style="width: 100%;">Pay Now</button>
+            <button id="cancelPayBtn" class="btn btn-outline"
+                style="width: 100%; margin-top: 0.5rem; border: none;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/citizen.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = '../../index.html'; // Go up two levels if nesting is deep, or just absolute relative
+            // Actually, index.html is in frontend/, so from frontend/citizen/ it is ../index.html.
+            // Let's stick to ../index.html but ensure it's correct.
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+
+</html>

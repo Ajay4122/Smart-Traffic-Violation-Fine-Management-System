@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Violation System</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-traffic-light"></i> E-Challan
+                </div>
+                <div>
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <!-- <button class="btn">Pay Fine</button> -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container fade-in" style="margin-top: 4rem; flex: 1;">
+        <div class="grid grid-cols-2" style="align-items: center;">
+            <div>
+                <h1
+                    style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff 0%, #94a3b8 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Smart Traffic <br> Management
+                </h1>
+                <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem;">
+                    Check your traffic violations and pay fines instantly.
+                    Ensuring safer roads with automated monitoring.
+                </p>
+
+                <div class="card" style="max-width: 500px;">
+                    <h3 style="margin-bottom: 1rem;">Check Challan Details</h3>
+                    <div class="form-group">
+                        <label class="form-label">Vehicle Number</label>
+                        <input type="text" id="vehicleSearch" class="form-control" placeholder="e.g. KA01AB1234">
+                    </div>
+                    <button id="searchBtn" class="btn" style="width: 100%;">Get Details</button>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center;">
+                <!-- Placeholder for an illustration or 3D element -->
+                <div style="position: relative; width: 400px; height: 400px;">
+                    <div
+                        style="position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, rgba(15,23,42,0) 70%);">
+                    </div>
+                    <img src="assets/images/traffic_illustration.png" alt="Traffic Illustration"
+                        style="width: 100%; position: relative; z-index: 1;">
+                </div>
+            </div>
+        </div>
+
+        <div id="resultsArea" class="grid grid-cols-1" style="margin-top: 4rem; display: none;">
+            <h2 style="margin-bottom: 1rem;">Violation History</h2>
+            <div id="violationsList" class="grid grid-cols-2">
+                <!-- Violations will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card" style="width: 100%; max-width: 400px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2>Login</h2>
+                <button id="closeLogin"
+                    style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">&times;</button>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+            </form>
+            <p style="margin-top: 1rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                Default Admin: admin@example.com / admin123 <br>
+                Default Police: police@example.com / police123
+            </p>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="card" style="width: 100%; max-width: 400px; text-align: center;">
+            <div style="margin-bottom: 1.5rem;">
+                <i class="fas fa-credit-card" style="font-size: 3rem; color: var(--primary-color);"></i>
+            </div>
+            <h2 style="margin-bottom: 0.5rem;">Confirm Payment</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You are paying <span id="paymentAmount"
+                    style="font-weight: bold; color: var(--text-color);"></span></p>
+
+            <button id="confirmPayBtn" class="btn" style="width: 100%;">Pay Now</button>
+            <button id="cancelPayBtn" class="btn btn-outline"
+                style="width: 100%; margin-top: 0.5rem; border: none;">Cancel</button>
+        </div>
+    </div>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
